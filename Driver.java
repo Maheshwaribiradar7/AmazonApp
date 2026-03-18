@@ -22,12 +22,12 @@ class Product {
     }
 
     void displayProduct() {
-        System.out.println("ProductId : " + pid);
-        System.out.println("Name : " + this.name);
-        System.out.println("Category : " + category);
-        System.out.println("Desc : " + desc);
-        System.out.println("Price : " + price);
-        System.out.println("Quantity : " + qnt);
+        System.out.print("\nProductId : " + pid);
+        System.out.print("Name : " + this.name);
+        System.out.print("Category : " + category);
+        System.out.print("Desc : " + desc);
+        System.out.print("Price : " + price);
+        System.out.print("Quantity : " + qnt);
     }
 
     public void updateAmount(int qnt) {
@@ -84,11 +84,11 @@ class Amazon {
         for (;;) {
             System.out.println("\n Welcome to Amazon\n");
 
-            System.out.println("1: Clothes\n2: Footwear\n3: Electronics\n4: Stationary\n5: Cart\n6: Order\n7: Logout");
+            System.out.println("1: Clothes\n2: Footwear \n3: Electronics \n4: Stationary \n5: Cart \n6: Order \n7: Logout");
 
-            System.out.println("Enter a option : ");
+            System.out.print("Enter a option : ");
             Scanner sc = new Scanner(System.in);
-
+            System.out.println();
             int option = sc.nextInt();
 
             switch (option) {
@@ -105,40 +105,34 @@ class Amazon {
 
     void productList(ArrayList<Product> list, String category) {
 
-        outerloop: for (;;) {
-
+        outerLoop: 
+        for (;;) {
             System.out.println("\n Category : " + category + " Module \n");
-
             for (Product ele : list) {
                 ele.displayProduct();
             }
-
-            System.out.println("\n Enter the pid : ");
+            System.out.print("\n Enter the pid : ");
             String pidUser = new Scanner(System.in).next().toUpperCase();
-
             boolean assump = false;
-
             for (Product ele : list) {
-                if (pidUser.equals(ele.pid)) {
+                if(pidUser.equals(ele.pid)) {
                     cart.add(ele);
                     assump = true;
-
-                    System.out.println("\n Enter the quantity : ");
+                    System.out.print("\n Enter the quantity : ");
                     int qnt = new Scanner(System.in).nextInt();
                     ele.qnt = qnt;
                 }
             }
-
             if (!assump) {
                 System.out.println("\n Invalid pid \n");
-                continue outerloop;
+                continue outerLoop;
             }
 
-            System.out.println("\n Do u want to continue shopping : ");
+            System.out.print("\n Do u want to continue shopping : ");
             String resp = new Scanner(System.in).next().toUpperCase();
 
-            if (resp.equals("YES")) {
-                break outerloop;
+            if (!(resp.equals("YES"))) {
+                break outerLoop;
             }
         }
     }
@@ -155,8 +149,8 @@ class Amazon {
             ele.updateAmount(ele.qnt);
             totalAmount += ele.totalBill;
         }
-        System.out.println("\n Total Amount : " + totalAmount);
-        System.out.println("\n Do u want to proceed with payment : ");
+        System.out.println("\n Total Amount : " + totalAmount+ " rs.");
+        System.out.print("\n Do u want to proceed with payment : ");
         String resp = new Scanner(System.in).next().toUpperCase();
 
         if (resp.equals("YES")) {
